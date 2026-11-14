@@ -1,4 +1,6 @@
 # app/app.py
+import os
+
 from flask import Flask, render_template, request
 from .calculadora import sumar, restar, multiplicar, dividir
 
@@ -33,4 +35,5 @@ def index():
 
 
 if __name__ == "__main__":  # pragma: no cover
-    app.run(debug=True, port=5000, host="0.0.0.0")  # Quita debug=True para producción
+    # Por seguridad escucha solo en localhost; usa FLASK_RUN_HOST para cambiarlo
+    app.run(port=5000, host=os.environ.get("FLASK_RUN_HOST", "127.0.0.1"))
