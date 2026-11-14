@@ -1,4 +1,6 @@
 # app/app.py
+"""Aplicación web Flask de la calculadora."""
+
 import os
 
 from flask import Flask, render_template, request
@@ -9,6 +11,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    """Muestra el formulario y calcula el resultado de la operación enviada."""
     resultado = None
     if request.method == "POST":
         try:

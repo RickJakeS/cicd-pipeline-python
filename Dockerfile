@@ -15,6 +15,10 @@ RUN pip install --no-cache-dir --only-binary :all: --require-hashes -r requireme
 # Copia el código de la aplicación (solo la carpeta app)
 COPY app/ ./app/
 
+# Ejecuta la aplicación con un usuario sin privilegios (no root)
+RUN useradd --create-home --uid 10001 appuser
+USER appuser
+
 # Expón el puerto en el que Gunicorn servirá la aplicación
 # Gunicorn por defecto usa 8000, así que usaremos ese.
 EXPOSE 8000
